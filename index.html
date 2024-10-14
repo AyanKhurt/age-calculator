@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Age Calculator</title>
+    <title>Age calculator</title>
 </head>
+
 <body>
-    <h1>Age Calculator</h1>
-    <label for="dob">Enter your Date of Birth:</label>
+    <h1>Age calculator</h1>
     <input type="date" id="dob">
     <button onclick="calculateAge()">Calculate</button>
 
@@ -26,12 +27,13 @@
 
 
             let nextBirthday = new Date(currentDate.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+
             if (nextBirthday < currentDate) {
                 nextBirthday.setFullYear(currentDate.getFullYear() + 1);
             }
 
             let timeDiff = nextBirthday - currentDate;
-            
+
             let daysRemaining = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
             let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -45,4 +47,5 @@
         }
     </script>
 </body>
+
 </html>
