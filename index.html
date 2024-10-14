@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+</head>
+<body>
+    <h1>Age Calculator</h1>
+    <label for="dob">Enter your Date of Birth:</label>
+    <input type="date" id="dob">
+    <button onclick="calculateAge()">Calculate</button>
+
+    <div id="result"></div>
+
+    <script>
+        function calculateAge() {
+            let dob = document.getElementById("dob").value;
+
+            let birthDate = new Date(dob);
+            let currentDate = new Date();
+
+            let ageYears = currentDate.getFullYear() - birthDate.getFullYear();
+            let ageMonths = currentDate.getMonth() - birthDate.getMonth();
+            let ageDays = currentDate.getDate() - birthDate.getDate();
+
+
+            let nextBirthday = new Date(currentDate.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+            if (nextBirthday < currentDate) {
+                nextBirthday.setFullYear(currentDate.getFullYear() + 1);
+            }
+
+            let timeDiff = nextBirthday - currentDate;
+            
+            let daysRemaining = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+
+            let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            let nextBirthdayDay = dayNames[nextBirthday.getDay()];
+
+            document.getElementById("result").innerHTML = `
+                Your age is ${ageYears} years, ${ageMonths} months, and ${ageDays} days.<br>
+                Your next birthday is on ${nextBirthday.toLocaleDateString()} (${nextBirthdayDay}).<br>
+                ${daysRemaining} days remaining until your next birthday.
+            `;
+        }
+    </script>
+</body>
+</html>
